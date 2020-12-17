@@ -36,10 +36,13 @@ notification.config({
   duration: null,
   top: 7,
 });
+const infuraKovan = process.env.INFURA_KOVAN
+const infuraMainnet = process.env.INFURA_MAINNET
+
 const infuraProvider =
   network === "kovan"
-    ? configData.providers.infura.kovan
-    : configData.providers.infura.mainnet;
+    ? infuraKovan
+    : infuraMainnet;
 
 const provider = new Web3.providers.HttpProvider(infuraProvider);
 
