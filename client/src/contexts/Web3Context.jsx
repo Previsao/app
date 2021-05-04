@@ -3,8 +3,11 @@ import React, { useCallback, useEffect, useState } from "react";
 import Web3 from "web3";
 import Web3Modal from "web3modal";
 
-import configData from "../config.json";
-import { NETWORK } from "../utils/constants";
+// import configData from "../config.json";
+// import { NETWORK } from "../utils/constants";
+
+import dotenv from 'dotenv'
+dotenv.config()
 
 export const Web3Context = React.createContext({});
 
@@ -12,7 +15,7 @@ const providerOptions = {
     walletconnect: {
         package: WalletConnectProvider,
         options: {
-            infuraId: configData.providers.infura.projectId
+            infuraId: process.env.PROJECT_ID
         }
     }
 };
@@ -34,7 +37,7 @@ export const Web3Provider = ({ children }) => {
     const [provider, setProvider] = useState({
         web3: new Web3(
             new Web3.providers.HttpProvider(
-                configData.providers.infura[NETWORK]
+                process.env.MAINNET
             )
         )
     });
